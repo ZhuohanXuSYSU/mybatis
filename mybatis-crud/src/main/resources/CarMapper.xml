@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jkjkjk"> <!-- 命名空间是为了防止 id 冲突， java中调用 sql 语句的严格写法 "namespace.id" -->
+
+    <insert id="insertCar">
+        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type)
+            values(#{id}, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
+
+    <delete id="deleteById">
+        delete from t_car where id = #{id}
+    </delete>
+
+    <update id="updateById">
+        update t_car set car_num = #{carNum}, brand = #{brand}, guide_price = #{guidePrice}, produce_time = #{produceTime}, car_type = #{carType} where id = #{id}
+    </update>
+
+    <select id="selectById" resultType="com.zhuohxu.mybatis.pojo.Car">
+        select id, car_num as carNum, brand, guide_price as guidePrice, produce_time as produceTime, car_type as carType from t_car where id = #{id}
+        <!-- 字段的别名需要与类的属性名相同 -->
+    </select>
+
+    <select id="selectAll" resultType="com.zhuohxu.mybatis.pojo.Car"> <!-- resultType 为 List 集合中的元素类型 -->
+        select id, car_num as carNum, brand, guide_price as guidePrice, produce_time as produceTime, car_type as carType from t_car
+    </select>
+
+</mapper>
